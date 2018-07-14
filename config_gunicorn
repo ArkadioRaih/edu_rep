@@ -1,0 +1,12 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=steve
+Group=www-data
+WorkingDirectory=/home/steve/newproject/testforum/
+ExecStart=/home/steve/newproject/newenv/bin/gunicorn --access-logfile - --error-logfile error.log --workers 2 --bind unix:/home/steve/newproject/forum.sock testforum.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
